@@ -79,7 +79,7 @@ http://localhost:8080
 ## 8 docker-compose 常用命令
 
 ```
-docker-compose up -d gitlab              构建建启动nignx容器
+docker-compose up -d gitlab              构建建启动gitlab容器
 docker-compose exec gitlab bash          登录到gitlab容器中
 docker-compose down                      删除所有gitlab容器,镜像
 docker-compose ps                        显示所有容器
@@ -90,9 +90,11 @@ docker-compose logs  gitlab              查看gitlab的日志
 docker-compose logs -f gitlab            查看gitlab的实时日志
 docker-compose config  -q                验证（docker-compose.yml）文件配置，当配置正确时，不输出任何内容，当文件配置错误，输出错误信息。 
 docker-compose events --json gitlab      以json的形式输出gitlab的docker日志
-docker-compose pause gitlab              暂停nignx容器
-docker-compose unpause gitlab            恢复ningx容器
+docker-compose pause gitlab              暂停gitlab容器
+docker-compose unpause gitlab            恢复gitlab容器
+docker-compose stop gitlab               停止gitlab容器
 docker-compose rm gitlab                 删除容器（删除前必须关闭容器）
-docker-compose stop gitlab               停止nignx容器
-docker-compose start gitlab              启动nignx容器
+docker-compose start gitlab              启动ngitlab容器
+docker stats                             查看所有容器的内存、CPU状态
+docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq) 查看所有容器的内网IP地址
 ```
