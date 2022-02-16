@@ -6,7 +6,7 @@ services:
       container_name: "gitlab"
       restart: unless-stopped
       privileged: true
-      hostname: ${GITLAB_HOSTNAME}
+      hostname: 'gitlab.l2xy.com'
       environment:
         TZ: 'Asia/Shanghai'
         GITLAB_OMNIBUS_CONFIG: |
@@ -22,8 +22,11 @@ services:
           gitlab_rails['smtp_tls'] = ${GITLAB_RAILS_SMTP_TLS}
           gitlab_rails['gitlab_email_from'] = ${GITLAB_RAILS_GITLAB_EMAIL_FROM}
           gitlab_rails['gitlab_shell_ssh_port'] = ${GITLAB_RAILS_GITLAB_SHELL_SSH_PORT}
+          unicorn['enable'] = ${UNICORN_ENABLE}
           unicorn['worker_processes'] = ${UNICORN_WORKER_PROCESSES}
           unicorn['worker_timeout'] = ${UNICORN_WORKER_TIMEOUT}
+          unicorn['worker_memory_limit_max'] = ${UNICORN_WORKER_MEMORY_LIMIT_MAX}
+          unicorn['worker_memory_limit_min'] = ${UNICORN_WORKER_MEMORY_LIMIT_MIN}
           sidekiq['concurrency'] = ${SIDEKIQ_CONCURRENCY}
           postgresql['shared_buffers'] = ${POSTGRESQL_SHARED_BUFFERS}
           postgresql['max_worker_processes'] = ${POSTGRESQL_MAX_WORKER_PROCESSES}
